@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mission 9 – Array Processing & IGCSE Practice</title>
+<style>
+:root{--navy:#10264f;--blue:#1677ff;--cyan:#e9f6ff;--green:#15803d;--greenbg:#ecfdf3;--amber:#b45309;--amberbg:#fff7ed;--red:#b42318;--redbg:#fff1f2;--ink:#172033;--muted:#64748b;--line:#d7dfeb;--card:#fff;--bg:#f4f7fb;--purple:#6d28d9}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.48}
+header{background:linear-gradient(135deg,#0b1f44,#153d77);color:#fff;padding:28px 18px 24px;border-bottom:6px solid #5bc0ff}
+.wrap{max-width:1120px;margin:auto}.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:#bde7ff}.hero{display:flex;gap:18px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap}.hero h1{margin:5px 0 6px;font-size:clamp(28px,4vw,48px)}.hero p{margin:0;color:#dcecff;max-width:760px}.badge{background:#fff;color:var(--navy);font-weight:800;padding:10px 14px;border-radius:999px}
+nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 2px 10px #10264f10}.navinner{max-width:1120px;margin:auto;padding:9px 12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}.navinner a,.navinner button{border:1px solid var(--line);background:#fff;color:var(--navy);padding:9px 13px;border-radius:10px;text-decoration:none;font-weight:700;cursor:pointer}.navinner a:hover,.navinner button:hover{background:var(--cyan)}.spacer{flex:1}.progresspill{font-size:13px;color:var(--muted);font-weight:700}
+main{max-width:1120px;margin:24px auto;padding:0 14px 60px}.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;margin:18px 0;box-shadow:0 8px 28px #0f274711}.panel h2{margin:0 0 8px;color:var(--navy)}.panel h3{color:var(--navy)}.objective{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:15px}.chip{padding:12px;border-radius:12px;background:#eef6ff;border:1px solid #cce6ff;font-weight:700}
+.note{border-left:5px solid var(--blue);background:#f7fbff;padding:13px 15px;border-radius:10px;margin:12px 0}.tip{border-left-color:var(--green);background:var(--greenbg)}.warning{border-left-color:#f59e0b;background:var(--amberbg)}
+.code{background:#0c1730;color:#eef6ff;border-radius:12px;padding:15px 16px;overflow:auto;font:15px/1.55 Consolas,'Courier New',monospace;white-space:pre-wrap}.kw{color:#70c8ff}.cm{color:#8fdfa8}.str{color:#ffd479}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:780px){.grid2{grid-template-columns:1fr}}
+table{border-collapse:collapse;width:100%;margin:10px 0}th,td{border:1px solid var(--line);padding:9px;text-align:center}th{background:#eef5ff;color:var(--navy)}
+.qcard{border:1px solid var(--line);border-radius:15px;padding:17px;margin:13px 0;background:#fff}.qhead{display:flex;gap:10px;align-items:center}.qnum{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--navy);color:#fff;font-weight:800;flex:0 0 auto}.marks{margin-left:auto;font-size:13px;font-weight:800;color:var(--muted)}
+input[type=text],textarea,select{width:100%;border:1.5px solid #bac7d8;border-radius:10px;padding:11px 12px;font:15px Arial;margin-top:9px;background:#fff}textarea{min-height:108px;font-family:Consolas,'Courier New',monospace;resize:vertical}.choices{display:grid;gap:8px;margin-top:9px}.choice{display:flex;gap:8px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:10px;background:#fbfdff}.choice input{margin-top:3px}.btn{border:0;background:var(--blue);color:white;font-weight:800;padding:10px 14px;border-radius:10px;cursor:pointer;margin-top:10px}.btn.secondary{background:#eef5ff;color:var(--navy);border:1px solid #c9dcf4}.btn.green{background:var(--green)}.btn.red{background:#9f1239}.feedback{display:none;margin-top:10px;padding:10px 12px;border-radius:10px;font-weight:700}.feedback.ok{display:block;background:var(--greenbg);color:#166534;border:1px solid #bbf7d0}.feedback.bad{display:block;background:var(--redbg);color:#9f1239;border:1px solid #fecdd3}.answerbox{display:none;margin-top:10px;background:#f8fafc;border:1px dashed #9fb0c6;padding:12px;border-radius:10px}.answerbox.show{display:block}.small{font-size:13px;color:var(--muted)}
+.scorebox{background:linear-gradient(135deg,#f1f7ff,#f7fff9);border:2px solid #cfe5ff;border-radius:18px;padding:20px;text-align:center}.bigscore{font-size:48px;font-weight:900;color:var(--navy)}.award{font-size:24px;font-weight:900}.bronze{color:#9a5b21}.silver{color:#64748b}.gold{color:#b7791f}.locked{opacity:.72}.footer{text-align:center;color:var(--muted);font-size:13px;margin-top:28px}.toast{position:fixed;right:18px;bottom:18px;background:#111827;color:#fff;padding:12px 15px;border-radius:10px;display:none;z-index:30}.toast.show{display:block}.studentbar{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end}.studentbar input{margin:0}.sectiontag{display:inline-block;background:#e8efff;color:#244b91;font-weight:800;padding:5px 9px;border-radius:999px;font-size:12px;margin-bottom:8px}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div class="eyebrow">Cambridge IGCSE Computer Science 0478 · Paper 2 Mastery</div><div class="hero"><div><h1>Mission 9: Array Processing & IGCSE Practice</h1><p>Process 1D and 2D arrays using loops, totals, averages, counting, maximum/minimum and linear search. Build confidence with Cambridge-style pseudocode.</p></div><div class="badge">PASS = 16 / 20</div></div></div></header>
+<nav><div class="navinner"><a href="#ido">I Do</a><a href="#wedo">We Do · 10</a><a href="#youdo">You Do · 20</a><a href="#result">Result</a><div class="spacer"></div><span class="progresspill" id="saveStatus">Progress saves automatically</span><button onclick="resetMission()">Reset</button></div></nav>
+<main>
+<section class="panel"><div class="studentbar"><div><label><b>Student name</b></label><input id="studentName" type="text" placeholder="Enter your name"></div><button class="btn green" onclick="saveName()">Save name</button></div><div class="objective"><div class="chip">✓ Read & write array elements</div><div class="chip">✓ Total, count & average</div><div class="chip">✓ Maximum & minimum</div><div class="chip">✓ Linear search</div><div class="chip">✓ 2D arrays & nested loops</div><div class="chip">✓ Debug array pseudocode</div></div></section>
+
+<section id="ido" class="panel"><span class="sectiontag">I DO · TEACHER MODEL</span><h2>1. The core idea: use the index to process every element</h2><p>An array stores several values under one identifier. The <b>index</b> tells us which element we are working with. A loop lets us process every element efficiently.</p>
+<div class="grid2"><div><h3>Read five marks</h3><div class="code"><span class="kw">FOR</span> Index ← 1 <span class="kw">TO</span> 5
+    <span class="kw">INPUT</span> Marks[Index]
+<span class="kw">NEXT</span> Index</div></div><div><h3>Output five marks</h3><div class="code"><span class="kw">FOR</span> Index ← 1 <span class="kw">TO</span> 5
+    <span class="kw">OUTPUT</span> Marks[Index]
+<span class="kw">NEXT</span> Index</div></div></div>
+<div class="note tip"><b>Exam habit:</b> if the array is `Marks[1:5]`, the loop normally runs from 1 to 5.</div>
+<h2>2. Total and average</h2><div class="code">Total ← 0
+<span class="kw">FOR</span> Index ← 1 <span class="kw">TO</span> 5
+    Total ← Total + Marks[Index]
+<span class="kw">NEXT</span> Index
+Average ← Total / 5</div>
+<p>Always initialise a running total to <b>0</b> before adding values.</p>
+<h2>3. Count values that meet a condition</h2><div class="code">PassCount ← 0
+<span class="kw">FOR</span> Index ← 1 <span class="kw">TO</span> 5
+    <span class="kw">IF</span> Marks[Index] &gt;= 50 <span class="kw">THEN</span>
+        PassCount ← PassCount + 1
+    <span class="kw">ENDIF</span>
+<span class="kw">NEXT</span> Index</div>
+<h2>4. Find maximum and minimum</h2><div class="code">Maximum ← Marks[1]
+Minimum ← Marks[1]
+<span class="kw">FOR</span> Index ← 2 <span class="kw">TO</span> 5
+    <span class="kw">IF</span> Marks[Index] &gt; Maximum <span class="kw">THEN</span>
+        Maximum ← Marks[Index]
+    <span class="kw">ENDIF</span>
+    <span class="kw">IF</span> Marks[Index] &lt; Minimum <span class="kw">THEN</span>
+        Minimum ← Marks[Index]
+    <span class="kw">ENDIF</span>
+<span class="kw">NEXT</span> Index</div>
+<div class="note warning"><b>Common mistake:</b> do not put the maximum test inside the `ELSE` of the minimum test. They are two independent checks.</div>
+<h2>5. Linear search using REPEAT ... UNTIL</h2><div class="code"><span class="kw">INPUT</span> SearchName
+Found ← FALSE
+Position ← 1
+<span class="kw">REPEAT</span>
+    <span class="kw">IF</span> StudentName[Position] = SearchName <span class="kw">THEN</span>
+        Found ← TRUE
+    <span class="kw">ELSE</span>
+        Position ← Position + 1
+    <span class="kw">ENDIF</span>
+<span class="kw">UNTIL</span> Found = TRUE <span class="kw">OR</span> Position &gt; 10</div>
+<p>A linear search checks items <b>one by one</b>. It stops when the item is found or when the end of the array is reached.</p>
+<h2>6. 2D arrays use two indexes</h2><div class="code"><span class="kw">FOR</span> Row ← 1 <span class="kw">TO</span> 3
+    <span class="kw">FOR</span> Column ← 1 <span class="kw">TO</span> 4
+        <span class="kw">OUTPUT</span> Scores[Row, Column]
+    <span class="kw">NEXT</span> Column
+<span class="kw">NEXT</span> Row</div><p>The outer loop changes the row. The inner loop moves across the columns.</p></section>
+
+<section id="wedo" class="panel"><span class="sectiontag">WE DO · 10 GUIDED</span><h2>Guided practice</h2><p>Try each question, then reveal the answer and compare your thinking.</p><div id="weDoList"></div></section>
+
+<section id="youdo" class="panel"><span class="sectiontag">YOU DO · 20 INDEPENDENT</span><h2>Mission challenge</h2><p>Complete all 20 questions. Your answers are saved on this device. Paste is disabled in independent-answer boxes.</p><div class="note"><b>Pass:</b> 16/20. &nbsp; <b>Bronze:</b> 16–17 &nbsp; <b>Silver:</b> 18–19 &nbsp; <b>Gold:</b> 20/20.</div><div id="youDoList"></div><button class="btn green" style="font-size:17px;padding:13px 20px" onclick="finishMission()">Check Final Score</button></section>
+
+<section id="result" class="panel"><span class="sectiontag">RESULT</span><h2>Mission 9 result</h2><div class="scorebox" id="scoreBox"><div class="small">Complete the You Do section, then check your final score.</div></div></section>
+<div class="footer">Mission 9 · Paper 2 Mastery · James Arokia Jenifer – Computer Science Teacher</div>
+</main><div id="toast" class="toast">Paste is disabled for this mission.</div>
+<script>
+const weDo=[
+{q:'Given Marks[1:5] = 72, 41, 88, 56, 63. What is Marks[3]?',a:'88',e:'Index 3 means the third stored value.'},
+{q:'Complete the input statement inside a loop: INPUT ________',a:'Marks[Index]',e:'The index selects the current array element.'},
+{q:'What value should Total be initialised to before totalling an array?',a:'0',e:'A running total starts at zero.'},
+{q:'Write the formula for the average of 5 values when their total is stored in Total.',a:'Average ← Total / 5',e:'Average = total divided by number of values.'},
+{q:'Which condition counts a pass when a pass mark is 50?',a:'Marks[Index] >= 50',e:'50 itself must be accepted, so use >=.'},
+{q:'If Maximum currently stores 72 and Marks[Index] is 88, what should happen?',a:'Maximum ← Marks[Index]',e:'88 is larger, so it replaces the current maximum.'},
+{q:'Why is Minimum ← Marks[1] a safe starting method?',a:'It starts with a real value from the array.',e:'This works even when the possible minimum is not known in advance.'},
+{q:'In a linear search, what does Found ← TRUE mean?',a:'The required item has been located.',e:'The Boolean flag records that the search succeeded.'},
+{q:'For Scores[2,3], which two positions are being used?',a:'Row 2, Column 3',e:'A 2D array uses row and column indexes.'},
+{q:'Correct the loop ending: FOR Column ← 1 TO 4 ... NEXT Row',a:'NEXT Column',e:'The NEXT identifier must match the loop variable.'}
+];
+
+const youDo=[
+{type:'text',q:'Marks[1:5] contains 64, 71, 39, 82, 55. State Marks[4].',ans:['82']},
+{type:'code',q:'Write the declaration for a 1D INTEGER array called Marks using indexes 1 to 5.',check:s=>norm(s)==='declaremarks:array[1:5]ofinteger'},
+{type:'code',q:'Complete the statement to input the current array element inside FOR Index ← 1 TO 5.',check:s=>norm(s)==='inputmarks[index]'},
+{type:'text',q:'What value should Total be initialised to before totalling?',ans:['0']},
+{type:'code',q:'Write one pseudocode statement that adds Marks[Index] to Total.',check:s=>norm(s)==='total←total+marks[index]'},
+{type:'code',q:'Write the statement to calculate the average when Total stores the sum of 5 marks.',check:s=>['average←total/5','average=total/5'].includes(norm(s))},
+{type:'code',q:'Write the IF condition that tests whether Marks[Index] is a pass when the pass mark is 50.',check:s=>{let n=norm(s);return n.includes('marks[index]>=50')||n.includes('ifmarks[index]>=50then')}},
+{type:'code',q:'Write the statement that increases PassCount by 1.',check:s=>norm(s)==='passcount←passcount+1'},
+{type:'code',q:'Using the first-array-element method, initialise Maximum for Marks[1:5].',check:s=>norm(s)==='maximum←marks[1]'},
+{type:'code',q:'Write the comparison condition used to find a new maximum.',check:s=>{let n=norm(s);return n.includes('marks[index]>maximum')}},
+{type:'code',q:'Write the comparison condition used to find a new minimum.',check:s=>{let n=norm(s);return n.includes('marks[index]<minimum')}},
+{type:'text',q:'A linear search starts at the first element. What should Position initially store?',ans:['1']},
+{type:'code',q:'Write the Boolean initialisation for a linear search before the item is found.',check:s=>norm(s)==='found←false'},
+{type:'code',q:'Using REPEAT ... UNTIL, write the termination condition for a 10-element search that stops when found OR after the last position.',check:s=>{let n=norm(s);return (n.includes('found=true')&&n.includes('position>10')&&n.includes('or'))}},
+{type:'code',q:'Write the comparison that checks whether StudentName[Position] matches SearchName.',check:s=>{let n=norm(s);return n.includes('studentname[position]=searchname')}},
+{type:'text',q:'A 2D array Scores[1:3,1:4] is used. How many elements are stored in total?',ans:['12']},
+{type:'code',q:'Write the inner loop header needed to process columns 1 to 4.',check:s=>norm(s)==='forcolumn←1to4'},
+{type:'code',q:'Correct this line: FOR Column ← 1 TO 4 ... NEXT Row',check:s=>norm(s)==='nextcolumn'},
+{type:'code',q:'Write pseudocode to total Marks[1:5] AND count how many marks are at least 50.',big:true,check:s=>{let n=norm(s);return n.includes('total←0')&&n.includes('passcount←0')&&n.includes('forindex←1to5')&&n.includes('total←total+marks[index]')&&n.includes('marks[index]>=50')&&n.includes('passcount←passcount+1')&&n.includes('endif')&&n.includes('nextindex')}},
+{type:'code',q:'Write a linear search for SearchName in StudentName[1:10] using REPEAT ... UNTIL. It must stop if found or after position 10.',big:true,check:s=>{let n=norm(s);return n.includes('found←false')&&n.includes('position←1')&&n.includes('repeat')&&n.includes('studentname[position]=searchname')&&n.includes('found←true')&&n.includes('position←position+1')&&n.includes('until')&&n.includes('found=true')&&n.includes('position>10')&&n.includes('or')}}
+];
+function norm(s){return (s||'').toLowerCase().replace(/\s+/g,'').replace(/←/g,'←').replace(/≥/g,'>=').replace(/≤/g,'<=').replace(/“|”/g,'"').replace(/;/g,'')}
+function buildWeDo(){const c=document.getElementById('weDoList');weDo.forEach((x,i)=>{let d=document.createElement('div');d.className='qcard';d.innerHTML=`<div class="qhead"><span class="qnum">${i+1}</span><b>${x.q}</b><span class="marks">GUIDED</span></div><button class="btn secondary" onclick="this.nextElementSibling.classList.toggle('show')">Reveal answer</button><div class="answerbox"><b>Answer:</b> ${esc(x.a)}<br><span class="small">${esc(x.e)}</span></div>`;c.appendChild(d)})}
+function buildYouDo(){const c=document.getElementById('youDoList');youDo.forEach((x,i)=>{let saved=state.answers[i]||'';let d=document.createElement('div');d.className='qcard';let field=x.big?`<textarea class="no-paste" id="a${i}" placeholder="Write Cambridge-style pseudocode here...">${esc(saved)}</textarea>`:`<input class="no-paste" id="a${i}" type="text" value="${attr(saved)}" placeholder="Type your answer">`;d.innerHTML=`<div class="qhead"><span class="qnum">${i+1}</span><b>${x.q}</b><span class="marks">1 mark</span></div>${field}<button class="btn" onclick="checkOne(${i})">Check answer</button><div id="f${i}" class="feedback"></div>`;c.appendChild(d);document.getElementById('a'+i).addEventListener('input',e=>saveAnswer(i,e.target.value))})}
+function esc(s){return String(s).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]))}function attr(s){return esc(s).replace(/"/g,'&quot;')}
+function correct(i,val){let q=youDo[i];if(q.ans)return q.ans.some(a=>norm(a)===norm(val));return q.check?!!q.check(val):false}
+function checkOne(i){let v=document.getElementById('a'+i).value;let ok=correct(i,v);state.checked[i]=ok;saveState();let f=document.getElementById('f'+i);f.className='feedback '+(ok?'ok':'bad');f.textContent=ok?'Correct ✓':'Not yet. Re-check the array index, loop, condition or pseudocode syntax.';updateProgress()}
+function finishMission(){let score=0,miss=[];youDo.forEach((q,i)=>{let el=document.getElementById('a'+i),v=el.value;state.answers[i]=v;let ok=correct(i,v);state.checked[i]=ok;if(ok)score++;else miss.push(i+1);let f=document.getElementById('f'+i);f.className='feedback '+(ok?'ok':'bad');f.textContent=ok?'Correct ✓':'Review this question and try again.'});state.score=score;saveState();renderResult(score,miss);document.getElementById('result').scrollIntoView({behavior:'smooth'});updateProgress()}
+function renderResult(score,miss=[]){let box=document.getElementById('scoreBox');let pct=Math.round(score/20*100),award='',cls='';if(score===20){award='GOLD';cls='gold'}else if(score>=18){award='SILVER';cls='silver'}else if(score>=16){award='BRONZE';cls='bronze'}else{award='MISSION NOT PASSED YET';cls=''}let msg=score>=16?'Mission 9 passed. Excellent progress with array processing.':'You need 16/20 to pass. Correct the missed questions and try again.';box.innerHTML=`<div class="bigscore">${score}/20</div><div>${pct}%</div><div class="award ${cls}">${award}</div><p><b>${esc(state.name||'Student')}</b> — ${msg}</p>${miss.length?`<div class="small">Review questions: ${miss.join(', ')}</div>`:''}`}
+function updateProgress(){let done=state.answers.filter(x=>String(x).trim()).length;document.getElementById('saveStatus').textContent=`Saved · ${done}/20 answered`;if(state.score!=null)renderResult(state.score,youDo.map((q,i)=>correct(i,state.answers[i]||'')?null:i+1).filter(Boolean))}
+function saveAnswer(i,v){state.answers[i]=v;saveState();updateProgress()}
+function saveName(){state.name=document.getElementById('studentName').value.trim();saveState();updateProgress()}
+function saveState(){localStorage.setItem('paper2Mission9',JSON.stringify(state))}
+function resetMission(){if(!confirm('Reset Mission 9 progress on this device?'))return;localStorage.removeItem('paper2Mission9');location.reload()}
+let state={name:'',answers:Array(20).fill(''),checked:{},score:null};try{let x=JSON.parse(localStorage.getItem('paper2Mission9'));if(x){state={...state,...x};if(!Array.isArray(state.answers))state.answers=Array(20).fill('')}}catch(e){}
+document.getElementById('studentName').value=state.name||'';buildWeDo();buildYouDo();document.querySelectorAll('.no-paste').forEach(el=>el.addEventListener('paste',e=>{e.preventDefault();let t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1700)}));updateProgress();
+</script></body></html>
